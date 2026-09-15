@@ -1,0 +1,22 @@
+npm install express cors dotenv pg bcrypt
+npm install -D nodemon
+npm install jsonwebtoken
+npm install --save-dev jest
+
+usuario de ejemplo;
+{
+	"nombre": "Agostín",
+    "usuario": "AgusElMasCapo",
+    "email": "agus@agus.com",
+    "password": "untoro.mp3"
+},
+{
+    "nombre": "el mati",
+    "usuario": "tekila",
+    "email": "mati@wow.com",
+    "password":"LosPibesDelBarrio4"
+}
+{
+    "email":"raul@raul.com",
+    "password":"RaulUnToro123"
+}
