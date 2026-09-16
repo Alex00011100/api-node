@@ -1,11 +1,11 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  user: process.env.DB_USER || 'postgres',
-  password: process.env.DB_PASSWORD || '3v31f8dm',
-  host: process.env.DB_HOST || 'localhost',
-  port: process.env.DB_PORT || 5432,
-  database: 'Api_tercero', // Nombre de tu base de datos
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT),
+  database: process.env.DB_NAME, // Nombre de tu base de datos
   max: 10,                 // Límite de conexiones simultáneas en el pool
   idleTimeoutMillis: 30000 // Tiempo antes de cerrar conexiones inactivas
 });
