@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: postgres_container
+    restart: always
+    environment:
+      POSTGRES_DB: ${DB_NAME:-Api_tercero}
+      POSTGRES_USER: ${DB_USER:-username}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD es requerida}
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-username} -d ${DB_NAME:-Api_tercero}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build: .
+    container_name: api_container
+    restart: always
+    environment:
+      DB_HOST: localhost
+      DB_PORT: 5432
+      DB_USER: ${DB_USER:-username}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME:-Api_tercero}
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET es requerida}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-2h}
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  db_data:
