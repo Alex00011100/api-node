@@ -24,7 +24,7 @@ La estructura del repositorio sigue la distribución mostrada a continuación:
 
 ```
 api-node/
-├── IMAGENES/                     # Capturas de pantalla de pruebas en Postman
+├── Capturas de pantalla/         # Capturas de pantalla de pruebas en Postman
 ├── node_modules/                 # Dependencias instaladas
 ├── src/
 │   ├── config/
@@ -124,7 +124,7 @@ Scripts disponibles definidos en el archivo `package.json`:
 * **Ejecución de pruebas (Jest):**
 
   ```
-  npm test
+  npm run test
   
   ```
 
